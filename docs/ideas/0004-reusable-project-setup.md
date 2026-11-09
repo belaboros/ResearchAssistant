@@ -1,6 +1,6 @@
 # 0004 · Reuse this setup for new repositories
 
-- **Status:** in-progress (template built and tested locally; GitHub repo not created yet)
+- **Status:** in-progress (template published; release tag and repo protection pending)
 - **Captured:** 2026-11-09
 - **Spec:** none (process idea). Template: `../sdd-template-for-claude` → https://github.com/belaboros/sdd-template-for-claude
 
@@ -44,5 +44,5 @@
 **Asked by:** Claude
 **Q:** [Claude] Creating the public GitHub repo was blocked by Claude Code's auto-mode safety check. Should it be public, and will you create it yourself or allow Claude to?
 **Options offered:** free text
-**A:** _pending_
-**Effect:**
+**A:** "I created the git repo: https://github.com/belaboros/sdd-template-for-claude. Put the local files into it." (created public, with an Apache-2.0 LICENSE)
+**Effect:** template rebased onto the user's initial commit (their LICENSE kept, the duplicate LICENSE.md dropped) and pushed to `main`; all CI checks pass; creating a project from `gh:belaboros/sdd-template-for-claude` works. The `v1.0.0` tag and the repo protection settings were blocked by the auto-mode safety check and are pending the user's go-ahead.
