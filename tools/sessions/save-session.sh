@@ -20,6 +20,8 @@ resolve_transcript() {
     [ -n "$p" ] && { echo "$p"; return; }
   fi
   local proj; proj="$HOME/.claude/projects/$(printf '%s' "$root" | sed 's/[^a-zA-Z0-9]/-/g')"
+  # newest transcript by modification time (session ids are UUIDs, so ls is safe here)
+  # shellcheck disable=SC2012
   ls -t "$proj"/*.jsonl 2>/dev/null | head -1
 }
 
@@ -64,7 +66,7 @@ render_conversation() {
 summarise() {
   local prompt="Below is a conversation between a user and Claude Code. Write an informal summary of what happened in the session, at most 5 sentences. Output only the summary."
   ( cd "${TMPDIR:-/tmp}" && printf '%s\n\n%s' "$prompt" "$1" \
-      | RA_SESSION_SUMMARY_CHILD=1 CLAUDECODE= timeout 120 claude -p --model haiku --no-session-persistence 2>/dev/null )
+      | RA_SESSION_SUMMARY_CHILD=1 CLAUDECODE='' timeout 120 claude -p --model haiku --no-session-persistence 2>/dev/null )
 }
 
 write_file() {   # $1 file, $2 title, $3 date, $4 session id, $5 summary, $6 conversation

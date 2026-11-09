@@ -4,6 +4,13 @@ Starting points, not mandates. The final choice for each language is recorded in
 
 The same structure applies to every language: a **complexity linter**, a **boundary checker** generated from `components.json`, a **metrics collector** that emits the snapshot schema, and **hooks** (Claude PostToolUse → pre-commit → CI).
 
+## Security, for every language (ADR-0008)
+Each new language also adds:
+- **Dependency audit:** `pip-audit` (Python), `npm audit --audit-level=high` (JS/TS), `govulncheck` (Go), `cargo audit` / `cargo deny` (Rust), as a pre-commit hook and in CI.
+- **Static security analysis:** `bandit` or ruff's `S` rules (Python), `eslint-plugin-security` (JS/TS), `gosec` via golangci-lint (Go), clippy (Rust). Optionally a GitHub CodeQL workflow for the language.
+- **Dependabot:** a `package-ecosystem` entry in `.github/dependabot.yml` with the same 7-day cooldown.
+- A lockfile, committed.
+
 ## Python (`python`)
 | Need | Tool |
 |------|------|
