@@ -4,4 +4,4 @@ One folder per idea that is being built: `NNNN-slug/` holds `spec.md` (what and 
 
 | #  | Spec | Status |
 |----|------|--------|
-| _none yet_ | | |
+| 0005 | [Evidence-based research assistant](0005-evidence-based-research-assistant/spec.md) | approved |
