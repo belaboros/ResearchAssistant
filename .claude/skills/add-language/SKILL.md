@@ -16,6 +16,7 @@ Introduce the language `$ARGUMENTS` with its quality gate (ADR-0006). The tool c
 7. **Hooks.**
    - `.pre-commit-config.yaml`: linter, boundary check, tests. Create the file if it doesn't exist.
    - `.claude/settings.json`: add a `PostToolUse` hook (matcher `Write|Edit|MultiEdit`) that lints the edited file, if it is in this language, and exits 2 with the findings on failure, so Claude fixes them straight away. Keep the existing `PreToolUse` gate.
-   - CI workflow: run the full gate on push and PR (create the workflow if needed).
+   - CI workflow: run the full gate on push and PR, in a job of its own next to `.github/workflows/security.yml`. SHA-pin the actions and keep permissions read-only.
+   - Security: add the language's dependency audit, static security analysis and Dependabot entry (playbook, "Security, for every language").
 8. **Prove it works.** Temporarily add (a) a function with CC > 15, (b) an import that breaks a boundary and (c) a cycle. Confirm each one fails the gate, then remove them. Report the output.
 9. **Document.** Add the build, test, lint and metrics commands to the Conventions section of `CLAUDE.md`. Run `/arch-metrics` to store the baseline snapshot.

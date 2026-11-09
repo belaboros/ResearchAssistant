@@ -15,6 +15,7 @@
 | [docs/sessions/](docs/sessions/) | Saved sessions: summary, the user's requests and Claude's replies (history only, never the source of truth) |
 | [docs/templates/](docs/templates/) | Templates for ideas, specs, plans, tasks and ADRs |
 | [tools/quality/](tools/quality/) | Language registry and quality-gate hooks |
+| [.pre-commit-config.yaml](.pre-commit-config.yaml), [.github/workflows/security.yml](.github/workflows/security.yml) | Security and quality checks, run locally and in CI (ADR-0008) |
 | [tools/sessions/](tools/sessions/) | `save-session.sh`, run by the `SessionEnd` hook (ADR-0007) |
 
 ## How we work: specification-driven development
@@ -42,9 +43,11 @@ idea  ──/idea──▶ docs/ideas/NNNN-slug.md        (original wording + Q&
 5. **Architecture docs change in the same change as the code.** Adding, removing or re-wiring a component means updating `components.json` and `architecture.md`. Any architecturally significant decision gets an ADR (`/adr`). Accepted ADRs are never edited, only superseded.
 6. **High cohesion, low coupling are enforced, not hoped for.** Code may depend only on components listed in its component's `mayDependOn`. No dependency cycles between components. Functions stay within the complexity limits in [docs/architecture/metrics/README.md](docs/architecture/metrics/README.md). Don't weaken a threshold or a boundary rule without an ADR.
 7. **New programming language ⇒ `/add-language` first.** A hook blocks writing source files in a language that is not registered in [tools/quality/languages.json](tools/quality/languages.json). Do not get around it (for example by writing the file through Bash).
-8. **Keep status fields current.** Update the `Status:` lines and the index tables in [docs/ideas/README.md](docs/ideas/README.md) and [docs/architecture/adr/README.md](docs/architecture/adr/README.md).
+8. **This repo is public.** Never commit secrets, tokens or personal data. Never bypass the hooks (`--no-verify`). If gitleaks flags something, remove it; only allowlist a confirmed false positive in `.gitleaks.toml`, with a comment.
+9. **Keep status fields current.** Update the `Status:` lines and the index tables in [docs/ideas/README.md](docs/ideas/README.md) and [docs/architecture/adr/README.md](docs/architecture/adr/README.md).
 
 ## Conventions
 
+- After cloning: `brew install gitleaks pre-commit && pre-commit install`. Run every check: `pre-commit run --all-files`.
 - Dates are absolute (`YYYY-MM-DD`). Diagrams are Mermaid in Markdown (ADR-0004).
 - Tech stack, build, test, lint and metrics commands: _added here by `/add-language` and `/plan`._

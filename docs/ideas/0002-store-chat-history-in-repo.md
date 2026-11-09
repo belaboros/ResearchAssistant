@@ -21,8 +21,8 @@
 **Asked by:** Claude
 **Q:** [Claude] Is the GitHub repo public, or will it be?
 **Options offered:** free text
-**A:** _pending_
-**Effect:**
+**A:** "This is a public repo on GitHub, let's add extra checks (gitleaks and others) to make it safe/secure."
+**Effect:** became idea [0003](0003-security-checks-for-public-repo.md) / ADR-0008
 
 ### 2026-11-09 · idea · Q3
 **Asked by:** Claude
