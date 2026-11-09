@@ -14,3 +14,4 @@ New ADRs are created with `/adr` from [../../templates/adr.md](../../templates/a
 | [0006](0006-enforce-modularity-per-language.md) | Enforce modularity rules per language, gated at the language's introduction | accepted | 2026-11-09 |
 | [0007](0007-session-history-as-curated-transcripts.md) | Save session history as curated transcripts in `docs/sessions/` | accepted | 2026-11-09 |
 | [0008](0008-security-checks-for-a-public-repository.md) | Layered security checks for a public repository | accepted | 2026-11-09 |
+| [0009](0009-github-repository-protection.md) | Protect `main` and enable GitHub's security features | accepted | 2026-11-09 |
